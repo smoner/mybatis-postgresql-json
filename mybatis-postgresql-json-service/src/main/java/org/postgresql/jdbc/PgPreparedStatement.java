@@ -5,6 +5,7 @@
 
 package org.postgresql.jdbc;
 
+import org.apache.ibatis.type.JdbcType;
 import org.json.JSONObject;
 import org.postgresql.Driver;
 import org.postgresql.core.*;
@@ -236,6 +237,9 @@ class PgPreparedStatement extends PgStatement implements PreparedStatement {
             case Types.NULL:
             case Types.OTHER:
                 oid = Oid.UNSPECIFIED;
+                break;
+            case 9999:
+                oid = Oid.JSON;
                 break;
             default:
                 // Bad Types value.
